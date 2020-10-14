@@ -38,10 +38,10 @@ app.post('/login',function(request, response, next){
         const password = ((login && login.password) || '');
         const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {authenticated:true} : {authenticated:false};
         if(result.authenticated === true){
-            response.status(200).end(result);
+            response.status(200).send(result);
         }
         else{
-            response.status(500).end(result);
+            response.status(500).send(result);
         }
         console.log(result);
         next();
