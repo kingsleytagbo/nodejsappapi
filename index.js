@@ -16,6 +16,12 @@ app
   .listen(port, () => console.log(`Listening on ${ port }`)
 );
 
+/*
+https://nodejsappapi.herokuapp.com/login
+{
+  "login:{username\"kayt\", password: \"badbody\"}": {}
+}
+**/
 app.post('/login',function(request, response){
     let user_name=request.body.user;
     let password=request.body.password;
