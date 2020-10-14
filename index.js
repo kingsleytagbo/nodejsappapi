@@ -43,7 +43,7 @@ app.post('/login',function(request, response, next){
         else{
             response.status(200).send(result);
         }
-        console.log({result: result, username: username, password:password});
+        console.log({login:login, body: request.body, result: result, username: username, password:password});
         next();
     }
     catch (error) {
