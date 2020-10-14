@@ -41,9 +41,9 @@ app.post('/login',function(request, response, next){
             response.status(200).send(result);
         }
         else{
-            response.status(500).send(result);
+            response.status(200).send(result);
         }
-        console.log(result);
+        console.log(response);
         next();
     }
     catch (error) {
