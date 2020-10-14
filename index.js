@@ -40,7 +40,7 @@ app.post('/login',function(request, response, next){
             response.status(200).send(result);
         }
         else{
-            response.status(500).send(result);
+            throw result;
         }
         console.log(result);
         next();
