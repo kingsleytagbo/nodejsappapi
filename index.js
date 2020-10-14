@@ -17,8 +17,11 @@ app
 /*
 https://nodejsappapi.herokuapp.com/login
 {
-  "login:{username\"kayt\", password: \"badbody\"}": {}
-}
+      "login": {
+         "username":"ktm-duke",
+         "password":"lufthansa"
+      }
+ }
 **/
 app.post('/login',function(request, response){
     try {
