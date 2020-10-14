@@ -35,7 +35,7 @@ app.post('/login',function(request, response){
     }
     catch (error) {
         console.log(error);
-        response.send(error)
+        response.send({})
         response.end("ok");
     }
   });
