@@ -12,9 +12,7 @@ app.use(bodyParser.json());
 
 app
   .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (request, response) => response.send('Running NodeJS Api + Express Server'))
-  .listen(port, () => console.log(`Listening on ${ port }`)
-);
+  .get('/', (request, response) => response.send('Running NodeJS Api + Express Server'));
 
 /*
 https://nodejsappapi.herokuapp.com/login
@@ -23,7 +21,7 @@ https://nodejsappapi.herokuapp.com/login
 }
 **/
 app.post('/login',function(request, response){
-    const login = request.body;
+    const login = JSON.parse(request.body);
     const username= ((login && login.username) || '');
     const password= ((login && login.password) || '');
     const result = {username: username, password: password};
@@ -31,6 +29,9 @@ app.post('/login',function(request, response){
     response.send(login)
     response.end("ok");
   });
+
+  
+  app.listen(port, () => console.log(`Listening on ${ port }`));
 
 /*
 app.get('/', (request, response) => {
