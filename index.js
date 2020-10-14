@@ -31,6 +31,7 @@ https://nodejsappapi.herokuapp.com/login
  }
 **/
 app.post('/login',function(request, response, next){
+    response.setHeader('Content-Type', 'application/json');
     try {
         const login = request.body.login;
         const username = ((login && login.username).trim().toLowerCase() || '');
@@ -40,7 +41,7 @@ app.post('/login',function(request, response, next){
             response.status(200).send(result);
         }
         else{
-            throw result;
+            response.status(500).send(result);
         }
         console.log(result);
         next();
