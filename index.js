@@ -48,7 +48,7 @@ app.post('/login',function(request, response, next){
     }
     catch (error) {
         console.log(error);
-        response.status(500).send(error);
+        response.status(500).send({});
         next();
     }
   });
