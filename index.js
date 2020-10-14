@@ -34,14 +34,14 @@ app.post('/login',function(request, response, next){
     response.setHeader('Content-Type', 'application/json');
     try {
         const login = request.body.login;
-        const username = ((login && login.username).trim().toLowerCase() || '');
+        const username = ((login && login.username) || '').trim().toLowerCase();
         const password = ((login && login.password) || '');
         const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {authenticated:true} : {authenticated:false};
         if(result.authenticated === true){
-            response.status(200).send(result);
+            response.status(200).end(result);
         }
         else{
-            response.status(500).send(result);
+            response.status(500).end(result);
         }
         console.log(result);
         next();
