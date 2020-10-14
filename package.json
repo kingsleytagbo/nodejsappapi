@@ -4,6 +4,7 @@
   "description": "NodeJS Api Server",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kingsley Tagbo / https://github.com/kingsleytagbo/nodejsappapi",
