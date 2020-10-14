@@ -30,20 +30,25 @@ https://nodejsappapi.herokuapp.com/login
       }
  }
 **/
-app.post('/login',function(request, response){
+app.post('/login',function(request, response, next){
     try {
         const login = request.body.login;
         const username = ((login && login.username).trim().toLowerCase() || '');
         const password = ((login && login.password) || '');
-        const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {result:true} : {result:false};
+        const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {authenticated:true} : {authenticated:false};
+        if(result.authenticated === true){
+            response.status(200).send(result);
+        }
+        else{
+            response.status(500).send(result);
+        }
         console.log(result);
-        response.send(result);
-        response.end("ok");
+        next();
     }
     catch (error) {
         console.log(error);
-        response.send({})
-        response.end("ok");
+        response.status(500).send(error);
+        next();
     }
   });
 
