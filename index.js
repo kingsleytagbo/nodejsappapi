@@ -27,7 +27,7 @@ app.post('/login',function(request, response){
     try {
         const login = request.body.login;
         const username = ((login && login.username).trim().toLowerCase() || '');
-        const password = ((login && login.password).trim().toLowerCase() || '');
+        const password = ((login && login.password) || '');
         const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {result:true} : {result:false};
         console.log(result);
         response.send(result);
