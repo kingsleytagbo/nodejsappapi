@@ -43,7 +43,7 @@ app.post('/login',function(request, response, next){
         else{
             response.status(200).send(result);
         }
-        console.log(response);
+        console.log(result);
         next();
     }
     catch (error) {
