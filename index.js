@@ -23,11 +23,12 @@ https://nodejsappapi.herokuapp.com/login
 }
 **/
 app.post('/login',function(request, response){
-    let user_name=request.body.user;
-    let password=request.body.password;
-    let login = request.body;
-    console.log({login: login});
-    response.send(login)
+    const login = request.body;
+    const username= ((login && login.username) || '');
+    const password= ((login && login.password) || '');
+    const result = {username: usernamne, password: password};
+    console.log(result);
+    response.send(result)
     response.end("ok");
   });
 
