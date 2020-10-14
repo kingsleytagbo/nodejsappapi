@@ -7,7 +7,7 @@ const app = express();
 
 
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app
@@ -21,13 +21,20 @@ https://nodejsappapi.herokuapp.com/login
 }
 **/
 app.post('/login',function(request, response){
-    const login = JSON.parse(request.body);
-    const username= ((login && login.username) || '');
-    const password= ((login && login.password) || '');
-    const result = {username: username, password: password};
-    console.log(login);
-    response.send(login)
-    response.end("ok");
+    try {
+        const login = JSON.parse(request.body);
+        const username = ((login && login.username) || '');
+        const password = ((login && login.password) || '');
+        const result = { username: username, password: password };
+        console.log(login);
+        response.send(login)
+        response.end("ok");
+    }
+    catch (error) {
+        console.log(error);
+        response.send(error)
+        response.end("ok");
+    }
   });
 
   
