@@ -28,7 +28,7 @@ app.post('/login',function(request, response){
     const password= ((login && login.password) || '');
     const result = {username: username, password: password};
     console.log(result);
-    response.send(result)
+    response.send(login)
     response.end("ok");
   });
 
