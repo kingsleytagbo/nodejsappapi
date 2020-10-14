@@ -1,13 +1,29 @@
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 5000;
+const bodyParser = require("body-parser");
 const path = require('path');
+
+const port = process.env.PORT || 5000;
+const app = express();
+
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app
   .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (req, res) => res.send('Hello World ...'))
+  .get('/', (request, response) => response.send('Running NodeJS Api + Express Server'))
   .listen(port, () => console.log(`Listening on ${ port }`)
 );
+
+app.post('/login',function(request, response){
+    let user_name=request.body.user;
+    let password=request.body.password;
+    let login = request.body;
+    console.log({login: login});
+    response.send(login)
+    response.end("ok");
+  });
 
 /*
 app.get('/', (request, response) => {
