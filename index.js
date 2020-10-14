@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5005;
+const path = require('path');
 
 app
   .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (req, res) => req.send('Hello World ...'))
+  .get('/', (req, res) => res.send('Hello World ...'))
   .listen(port, () => console.log(`Listening on ${ port }`)
 );
 
