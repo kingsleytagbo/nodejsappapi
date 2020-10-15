@@ -37,7 +37,9 @@ app.post('/login',function(request, response, next){
         const login = (request.body.login) ? request.body.login : JSON.parse(request.body).login;
         const username = ((login && login.username) || '').trim().toLowerCase();
         const password = ((login && login.password) || '');
-        const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? {authenticated:true} : {authenticated:false};
+        const result = ((username && username === 'kingsleytagbo') && (password && password === 'fullstack')) ? 
+        {authenticated:true, auth_token: (new Date()).toDateString()} : 
+        {authenticated:false, auth_token: null};
         if(result.authenticated === true){
             response.status(200).send(result);
         }
