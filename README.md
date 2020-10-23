@@ -1,5 +1,14 @@
 # NodeJS Api Server
 
+## heroku-cli commands
+heroku addons
+heroku config --app nodejsappapi
+heroku pg:info --app nodejsappapi
+heroku pg:info --app nodejsappapi
+
+## References
+Heroku Postgress docs: https://devcenter.heroku.com/articles/heroku-postgresql
+
 ## Git
 #### mkdir NodeApi
 #### cd NodeApi
