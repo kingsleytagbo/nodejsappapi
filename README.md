@@ -4,10 +4,13 @@
 heroku addons
 heroku config --app nodejsappapi
 heroku pg:info --app nodejsappapi
-heroku pg:info --app nodejsappapi
+heroku pg:psql --app nodejsappapi
 
 ## References
 Heroku Postgress docs: https://devcenter.heroku.com/articles/heroku-postgresql
+
+Build a Node.js, Express & PostgreSQL REST API:
+https://www.taniarascia.com/node-express-postgresql-heroku/
 
 ## Git
 #### mkdir NodeApi
