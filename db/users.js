@@ -68,7 +68,7 @@ const createUser = (request, response, next) => {
                 display_name = user.display_name,
                 user_status = user.user_status, 
                 user_registered = user.user_registered, 
-                user_url = suer.user_url, 
+                user_url = user.user_url, 
                 user_activation_key = user.user_activation_key, 
                 spam = user.spam,
                 deleted = user.deleted, site_id = user.site_id;
