@@ -4,7 +4,7 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
 //const pool = require('./db/postgress/connection');
-const getUsers = require('./db/users');
+const Users = require('./db/users');
 
 
 
@@ -36,7 +36,7 @@ app
             }
         });
         */
-        getUsers(function (err, result) {
+        Users.getUsers(function (err, result) {
             if (err) {
                 console.error({ error: err });
                 response.send(err);
