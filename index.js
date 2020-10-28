@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-const pool = require('./db/postgress/connection');
-const Users = require('./db/users');
+const POOLS = require('./db/postgress/connection');
+const USERS = require('./db/users');
 
 //Here we are configuring express to use body-parser as middle-ware.
 // app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,9 +21,9 @@ app.use(function(req, res, next) {
 app
     .use(express.static(path.join(__dirname, 'public')))
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
-    /*
+
     .get('/healthcheckdb1', (request, response) => {
-        Users.getUsers(function (err, result) {
+        USERS.getUsers(function (err, result) {
             if (err) {
                 console.error({ error: err });
                 response.send(err);
@@ -34,9 +34,9 @@ app
             }
         });
     })
-    */
+    
     .get('/healthcheckdb2', (request, response) => {
-        pool.query('SELECT * FROM wp_user', function (err, result) {
+        POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
             if (err) {
                 console.error({error: err});
                 response.send(err);

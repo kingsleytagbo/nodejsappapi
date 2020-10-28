@@ -1,8 +1,8 @@
 
 
-const pool = require('../db/postgress/connection');
+const POOLS = require('../db/postgress/connection');
 const getUsers = () => {
-    return pool.query('SELECT * FROM wp_user', () => {
+    return POOLS.pool.query('SELECT * FROM wp_user', () => {
     });
 }
 
