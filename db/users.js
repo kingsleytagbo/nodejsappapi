@@ -1,7 +1,7 @@
 
 
 const POOLS = require('../db/postgress/connection');
-const getUsers = (errors, result) => {
+const getUsers = (errors, data) => {
     POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
         if (err) {
             console.error({ error: err });
@@ -9,7 +9,7 @@ const getUsers = (errors, result) => {
         }
         else {
             console.log({ getUsers: result.rows[0] });
-            return result(result.rows[0]);
+            return data(result.rows[0]);
         }
     });
 }
