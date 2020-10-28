@@ -22,18 +22,7 @@ app
     .use(express.static(path.join(__dirname, 'public')))
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
 
-    .get('/healthcheckdb1', (request, response) => {
-        const result = USERS.getUsers(function (err, result) {
-            if (err) {
-                console.error({healthcheckdb1_error: err});
-                response.send(err);
-            }
-            else {
-                console.log({healthcheckdb1_success: result.rows[0]});
-                response.send(result.rows[0]);
-            }
-        });
-    })
+    .get('/healthcheckdb1', USERS.getUsers)
 
     .get('/healthcheckdb2', (request, response) => {
         const result = POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {

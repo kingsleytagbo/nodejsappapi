@@ -1,17 +1,14 @@
 
 
 const POOLS = require('../db/postgress/connection');
-const getUsers = (errors, data) => {
-    POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
-        if (err) {
-            console.error({ error: err });
-            errors(error);
-        }
-        else {
-            console.log({ getUsers: result.rows[0] });
-            return data(result.rows[0]);
-        }
-    });
-}
+const getUsers = (request, response) => {
+    POOLS.pool.query('SELECT * FROM wp_user ORDER BY ID ASC', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows[0])
+    })
+  }
+  
 
 module.exports = { getUsers };
