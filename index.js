@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-//const pool = require('./db/postgress/connection');
+const pool = require('./db/postgress/connection');
 const Users = require('./db/users');
 
 
@@ -23,19 +23,7 @@ app.use(function(req, res, next) {
 app
     .use(express.static(path.join(__dirname, 'public')))
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
-    .get('/healthcheckdb', (request, response) => {
-        /*
-        pool.query('SELECT * FROM wp_user', function (err, result) {
-            if (err) {
-                console.error({error: err});
-                response.send(err);
-            }
-            else {
-                console.log({success: result.rows[0]});
-                response.send(result.rows[0]);
-            }
-        });
-        */
+    .get('/healthcheckdb1', (request, response) => {
         Users.getUsers(function (err, result) {
             if (err) {
                 console.error({ error: err });
@@ -43,6 +31,18 @@ app
             }
             else {
                 console.log({ success: result.rows[0] });
+                response.send(result.rows[0]);
+            }
+        });
+    })
+    .get('/healthcheckdb2', (request, response) => {
+        pool.query('SELECT * FROM wp_user', function (err, result) {
+            if (err) {
+                console.error({error: err});
+                response.send(err);
+            }
+            else {
+                console.log({success: result.rows[0]});
                 response.send(result.rows[0]);
             }
         });
