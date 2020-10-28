@@ -22,7 +22,7 @@ const getUsers = (request, response) => {
             if (error) {
               throw error
             }
-            console.log({loginUser: data.rows, guest: guest});
+            // console.log({loginUser: data.rows, guest: guest});
 
             const result = (data && data.rows && data.rows.length > 0)  ? 
             {authenticated:true, auth_token: (new Date()).toISOString()} : 
@@ -31,13 +31,14 @@ const getUsers = (request, response) => {
                 response.status(200).send(result);
             }
             else{
+                console.log({loginUserFailure: guest});
                 response.status(200).send(result);
             }
         });
         next();
     }
     catch (error) {
-        console.log(error);
+        console.log({loginUserApiFailure: error});
         response.status(500).send({});
         next();
     }
