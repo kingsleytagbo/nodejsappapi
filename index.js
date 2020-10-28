@@ -36,7 +36,7 @@ app
             }
         });
         */
-        getUsers(, function (err, result) {
+        getUsers(function (err, result) {
             if (err) {
                 console.error({ error: err });
                 response.send(err);
