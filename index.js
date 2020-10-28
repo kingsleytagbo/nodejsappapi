@@ -39,6 +39,8 @@ app
         });
     });
 
+app.get('/login', loginUser);
+app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
 /*
 https://nodejsappapi.herokuapp.com/login
 {
@@ -48,6 +50,7 @@ https://nodejsappapi.herokuapp.com/login
       }
  }
 **/
+/*
 app.post('/login',function(request, response, next){
     response.setHeader('Content-Type', 'application/json');
     try {
@@ -72,9 +75,8 @@ app.post('/login',function(request, response, next){
         next();
     }
   });
+*/
 
-  
-  app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
 
 /*
 app.get('/', (request, response) => {
