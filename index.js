@@ -46,7 +46,7 @@ https://nodejsappapi.herokuapp.com/login
       }
  }
 **/
-app.post('/login',function(request, response, next){
+app.post('/login',function(request, response){
     response.setHeader('Content-Type', 'application/json');
     try {
         const login = (request.body.login) ? request.body.login : JSON.parse(request.body).login;
