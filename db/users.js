@@ -59,24 +59,21 @@ const createUser = (request, response, next) => {
             const result = (data && data.rows && data.rows.length > 0) ?
                 { authenticated: true, auth_token: (new Date()).toISOString() } :
                 { authenticated: false, auth_token: null };
-            if (result.authenticated === true) {
-                const [user_login, user_pass, user_nicename,user_email,display_name,
-                    user_status,user_registered,user_url,user_activation_key,spam,
-                    deleted,site_id] = user;
-                POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)', 
-                [user_login, user_pass, user_nicename,user_email,display_name,
-                    user_status,user_registered,user_url,user_activation_key,spam,
-                    deleted,site_id], (error, results) => {
-                    if (error) {
-                        throw error
-                    }
-                    response.status(201).send(`createUserSuccess: ${result.insertId}`)
-                });
-            }
-            else {
-                console.log({ cerateUserFailure: guest, body: request.body, user: user });
-                response.status(200).send(result);
-            }
+            user.spam = result.authenticated;
+            const [user_login, user_pass, user_nicename, user_email, display_name,
+                user_status, user_registered, user_url, user_activation_key, spam,
+                deleted, site_id] = user;
+                
+            POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+                [user_login, user_pass, user_nicename, user_email, display_name,
+                    user_status, user_registered, user_url, user_activation_key, spam,
+                    deleted, site_id], (error, results) => {
+                        if (error) {
+                            throw error
+                        }
+                        response.status(201).send(`createUserSuccess: ${result.insertId}`)
+                    });
+
         });
         // next();
     }
