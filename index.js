@@ -24,7 +24,7 @@ app
 
     .get('/healthcheckdb1', (request, response) => {
         const result = USERS.getUsers();
-        console.log({success: result});
+        console.log({healthcheckdb1: result});
         response.send(result);
     })
 
@@ -35,7 +35,7 @@ app
                 response.send(err);
             }
             else {
-                console.log({success: result.rows[0]});
+                console.log({healthcheckdb2: result.rows[0]});
                 response.send(result.rows[0]);
             }
         });
