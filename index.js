@@ -23,20 +23,13 @@ app
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
 
     .get('/healthcheckdb1', (request, response) => {
-        USERS.getUsers(function (err, result) {
-            if (err) {
-                console.error({ error: err });
-                response.send(err);
-            }
-            else {
-                console.log({ success: result.rows[0] });
-                response.send(result.rows[0]);
-            }
-        });
+        const result = USERS.getUsers();
+        console.log({success: result});
+        response.send(result);
     })
-    
+
     .get('/healthcheckdb2', (request, response) => {
-        POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
+        const result = POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
             if (err) {
                 console.error({error: err});
                 response.send(err);
