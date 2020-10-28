@@ -18,7 +18,7 @@ const getUsers = (request, response) => {
         const username = ((login && login.username) || 'adminuser').trim().toLowerCase();
         const password = ((login && login.password) || 'adminpassword');
         const guest = {user_login: username, user_pass: password};
-        POOLS.pool.query('SELECT * FROM wp_user WHERE user_login = $1 and user_pass = $2', [user_login, user_pass], (error, results) => {
+        POOLS.pool.query('SELECT * FROM wp_user WHERE user_login = $1 and user_pass = $2', [guest.user_login, guest.user_pass], (error, results) => {
             if (error) {
               throw error
             }
