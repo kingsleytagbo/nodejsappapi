@@ -30,7 +30,7 @@ const loginUser = (request, response, next) => {
                 response.status(200).send(result);
             }
             else {
-                console.log({ loginUserFailure: guest });
+                console.log({ loginUserFailure: guest, body: request.body });
                 response.status(200).send(result);
             }
         });
