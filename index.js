@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-const pg = require('pg');
+const { Client } = require('pg')
+const client = new Client();
 const connectionString = process.env.DATABASE_URL;
 
 
@@ -23,7 +24,7 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
   .get('/healthcheckdb', (request, response) => {
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.connect(process.env.DATABASE_URL, function(err, client, done) {
         console.log(err+"!!!!!!!!!!!!!!!");
        client.query('SELECT * FROM wp_user', function(err, result) {
          done();
