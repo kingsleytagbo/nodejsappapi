@@ -23,9 +23,16 @@ app
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
 
     .get('/healthcheckdb1', (request, response) => {
-        const result = USERS.getUsers();
-        console.log({healthcheckdb1: result});
-        response.send(result);
+        const result = USERS.getUsers(function (err, result) {
+            if (err) {
+                console.error({healthcheckdb1_error: err});
+                response.send(err);
+            }
+            else {
+                console.log({healthcheckdb1_success: result.rows[0]});
+                response.send(result.rows[0]);
+            }
+        });
     })
 
     .get('/healthcheckdb2', (request, response) => {
