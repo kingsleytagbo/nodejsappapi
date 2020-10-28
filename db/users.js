@@ -15,10 +15,10 @@ const getUsers = (request, response) => {
     response.setHeader('Content-Type', 'application/json');
     try {
         const login = (request.body.login) ? request.body.login : JSON.parse(request.body).login;
-        const username = ((login && login.username) || '').trim().toLowerCase();
-        const password = ((login && login.password) || '');
+        const username = ((login && login.username) || 'adminuser').trim().toLowerCase();
+        const password = ((login && login.password) || 'adminpassword1');
         const guest = {user_login: username, user_pass: password};
-        POOLS.pool.query('SELECT * FROM wp_user WHERE user_login = $1 and user_passw = $2', [user_login, user_pass], (error, results) => {
+        POOLS.pool.query('SELECT * FROM wp_user WHERE user_login = $1 and user_pass = $2', [user_login, user_pass], (error, results) => {
             if (error) {
               throw error
             }

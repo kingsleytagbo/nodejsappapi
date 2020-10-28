@@ -24,7 +24,9 @@ app
 
     .get('/healthcheckdb1', USERS.getUsers)
 
-    .get('/healthcheckdb2', (request, response) => {
+    .get('/healthcheckdb2', USERS.loginUser)
+
+    .get('/healthcheckdb3', (request, response) => {
         const result = POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
             if (err) {
                 console.error({error: err});
@@ -46,7 +48,7 @@ https://nodejsappapi.herokuapp.com/login
       }
  }
 **/
-app.post('/login',function(request, response){
+app.post('/login',function(request, response, next){
     response.setHeader('Content-Type', 'application/json');
     try {
         const login = (request.body.login) ? request.body.login : JSON.parse(request.body).login;
