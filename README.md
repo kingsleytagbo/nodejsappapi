@@ -12,6 +12,8 @@ Heroku Postgress docs: https://devcenter.heroku.com/articles/heroku-postgresql
 Build a Node.js, Express & PostgreSQL REST API:
 https://www.taniarascia.com/node-express-postgresql-heroku/
 
+## Heroku + Postgress + Database Commands
+
 ## Git
 #### mkdir NodeApi
 #### cd NodeApi
