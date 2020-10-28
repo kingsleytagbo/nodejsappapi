@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
-
 const port = process.env.PORT || 5000;
 const app = express();
+const pg = require('pg');
+const connectionString = process.env.DATABASE_URL;
 
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -20,7 +21,10 @@ app.use(function(req, res, next) {
 
 app
   .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (request, response) => response.send('Running NodeJS + Express Api'));
+  .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
+  .get('/appsecrests', (request, response) => {
+      response.send(process.env.DATABASE_URL);
+  });
 
 /*
 https://nodejsappapi.herokuapp.com/login
