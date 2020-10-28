@@ -60,7 +60,7 @@ const createUser = (request, response, next) => {
                 { authenticated: true, auth_token: (new Date()).toISOString() } :
                 { authenticated: false, auth_token: null };
             user.spam = result.authenticated;
-            const [
+            const 
                 user_login = user.user_login, 
                 user_pass= user.user_pass, 
                 user_nicename=user.user_nicename, 
@@ -71,7 +71,7 @@ const createUser = (request, response, next) => {
                 user_url = suer.user_url, 
                 user_activation_key = user.user_activation_key, 
                 spam = user.spam,
-                deleted = user.deleted, site_id = user.site_id];
+                deleted = user.deleted, site_id = user.site_id;
 
             POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
                 [user_login, user_pass, user_nicename, user_email, display_name,
