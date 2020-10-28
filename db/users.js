@@ -76,12 +76,12 @@ const createUser = (request, response, next) => {
             POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
                 [user_login, user_pass, user_nicename, user_email, display_name,
                     user_status, user_registered, user_url, user_activation_key, spam,
-                    deleted, site_id], (error, results) => {
+                    deleted, site_id], (error, newUser) => {
                         if (error) {
                             throw error
                         }
-                        console.log({createUserSuccess: result.insertId});
-                        response.status(201).send(`createUserSuccess: ${result.insertId}`)
+                        console.log({createUserSuccess: newUser.insertId});
+                        response.status(201).send(`createUserSuccess: ${newUser.insertId}`)
                     });
 
         });
