@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
 app
     .use(express.static(path.join(__dirname, 'public')))
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
+    /*
     .get('/healthcheckdb1', (request, response) => {
         Users.getUsers(function (err, result) {
             if (err) {
@@ -33,6 +34,7 @@ app
             }
         });
     })
+    */
     .get('/healthcheckdb2', (request, response) => {
         pool.query('SELECT * FROM wp_user', function (err, result) {
             if (err) {
