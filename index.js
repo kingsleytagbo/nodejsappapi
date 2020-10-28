@@ -28,11 +28,16 @@ app
         console.log(err+"!!!!!!!!!!!!!!!");
        client.query('SELECT * FROM wp_user', function(err, result) {
          done();
-         if(err) return console.error(err);
+         if(err) {
+             console.error(err);
+             response.send(err);
+         }
+         else{
          console.log(result.rows);
+         response.send(result.rows);
+         }
        });
      });
-     response.send("test db");
   });
 
 /*
