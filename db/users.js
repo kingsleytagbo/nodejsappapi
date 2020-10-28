@@ -59,7 +59,7 @@ const createUser = (request, response, next) => {
             const result = (data && data.rows && data.rows.length > 0) ?
                 { authenticated: true, auth_token: (new Date()).toISOString() } :
                 { authenticated: false, auth_token: null };
-            user.spam = result.authenticated;
+            user.spam = result.authenticated ? 0 : 1;
             const 
                 user_login = user.user_login, 
                 user_pass= user.user_pass, 
