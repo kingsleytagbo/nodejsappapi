@@ -2,7 +2,15 @@
 
 const POOLS = require('../db/postgress/connection');
 const getUsers = () => {
-    return POOLS.pool.query('SELECT * FROM wp_user', () => {
+    return POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
+        if (err) {
+            console.error({ error: err });
+            throw err;
+        }
+        else {
+            console.log({ success: result.rows[0] });
+            return result.rows[0];
+        }
     });
 }
 
