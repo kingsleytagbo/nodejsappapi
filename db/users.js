@@ -35,7 +35,7 @@ const getUsers = (request, response) => {
                 response.status(200).send(result);
             }
         });
-        next();
+        // next();
     }
     catch (error) {
         console.log({loginUserApiFailure: error});
