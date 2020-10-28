@@ -6,7 +6,7 @@ const app = express();
 const {Pool} = require('pg');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: true,
+    ssl: false,
   });
 const connectionString = process.env.DATABASE_URL;
 
@@ -29,11 +29,11 @@ app
     .get('/healthcheckdb', (request, response) => {
         pool.query('SELECT * FROM wp_user', function (err, result) {
             if (err) {
-                console.error(err);
+                console.error({error: err});
                 response.send(err);
             }
             else {
-                console.log(result.rows);
+                console.log({success: result.rows});
                 response.send(result.rows);
             }
         });
