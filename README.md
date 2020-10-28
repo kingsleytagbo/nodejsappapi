@@ -13,6 +13,10 @@ Build a Node.js, Express & PostgreSQL REST API:
 https://www.taniarascia.com/node-express-postgresql-heroku/
 
 ## Heroku + Postgress + Database Commands
+### connect to a heroku database
+heroku pg:psql --app nodejsappapi
+### create user a table based on a script file
+cat db/postgress/user.sql | heroku pg:psql  -a  nodejsappapi
 
 ## Git
 #### mkdir NodeApi
