@@ -28,7 +28,6 @@ app
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
     .get('/healthcheckdb', (request, response) => {
         pool.query('SELECT * FROM wp_user', function (err, result) {
-            done();
             if (err) {
                 console.error(err);
                 response.send(err);
