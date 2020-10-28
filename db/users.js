@@ -22,7 +22,7 @@ const getUsers = (request, response) => {
             if (error) {
               throw error
             }
-            console.log({loginUser: results.rows});
+            console.log({loginUser: results.rows, guest: guest});
             response.status(200).json(results.rows)
           })
           /*
