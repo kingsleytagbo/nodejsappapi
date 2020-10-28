@@ -3,8 +3,11 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
-const { Client } = require('pg')
-const client = new Client();
+const {Pool} = require('pg');
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
 const connectionString = process.env.DATABASE_URL;
 
 
@@ -21,24 +24,21 @@ app.use(function(req, res, next) {
 });
 
 app
-  .use(express.static(path.join(__dirname, 'public')))
-  .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
-  .get('/healthcheckdb', (request, response) => {
-    client.connect(process.env.DATABASE_URL, function(err, client, done) {
-        console.log(err+"!!!!!!!!!!!!!!!");
-       client.query('SELECT * FROM wp_user', function(err, result) {
-         done();
-         if(err) {
-             console.error(err);
-             response.send(err);
-         }
-         else{
-         console.log(result.rows);
-         response.send(result.rows);
-         }
-       });
-     });
-  });
+    .use(express.static(path.join(__dirname, 'public')))
+    .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
+    .get('/healthcheckdb', (request, response) => {
+        pool.query('SELECT * FROM wp_user', function (err, result) {
+            done();
+            if (err) {
+                console.error(err);
+                response.send(err);
+            }
+            else {
+                console.log(result.rows);
+                response.send(result.rows);
+            }
+        });
+    });
 
 /*
 https://nodejsappapi.herokuapp.com/login
