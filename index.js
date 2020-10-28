@@ -22,8 +22,16 @@ app.use(function(req, res, next) {
 app
   .use(express.static(path.join(__dirname, 'public')))
   .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
-  .get('/appsecrests', (request, response) => {
-      response.send(process.env.DATABASE_URL);
+  .get('/healthcheckdb', (request, response) => {
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        console.log(err+"!!!!!!!!!!!!!!!");
+       client.query('SELECT * FROM wp_user', function(err, result) {
+         done();
+         if(err) return console.error(err);
+         console.log(result.rows);
+       });
+     });
+     response.send("test db");
   });
 
 /*
