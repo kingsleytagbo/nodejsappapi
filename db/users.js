@@ -8,7 +8,7 @@ const getUsers = () => {
             throw err;
         }
         else {
-            console.log({ success: result.rows[0] });
+            console.log({ getUsers: result.rows[0] });
             return result.rows[0];
         }
     });
