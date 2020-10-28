@@ -20,28 +20,28 @@ app.use(function(req, res, next) {
 
 app
     .use(express.static(path.join(__dirname, 'public')))
-    .get('/', (request, response) => response.send('Running NodeJS + Express Api'))
+    .get('/', (request, response) => response.send('Running NodeJS + Express Api'));
 
-    .get('/healthcheckdb1', USERS.getUsers)
-
-    .get('/healthcheckdb2', USERS.loginUser)
-
-    .get('/healthcheckdb3', (request, response) => {
-        const result = POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
-            if (err) {
-                console.error({error: err});
-                response.send(err);
-            }
-            else {
-                console.log({healthcheckdb2: result.rows[0]});
-                response.send(result.rows[0]);
-            }
-        });
-    });
-
-app.get('/login', USERS.loginUser);
+app.post('/login', USERS.loginUser);
 
 app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
+
+app.get('/healthcheckdb1', USERS.getUsers)
+
+app.get('/healthcheckdb2', USERS.loginUser)
+
+app.get('/healthcheckdb3', (request, response) => {
+    const result = POOLS.pool.query('SELECT * FROM wp_user', function (err, result) {
+        if (err) {
+            console.error({error: err});
+            response.send(err);
+        }
+        else {
+            console.log({healthcheckdb2: result.rows[0]});
+            response.send(result.rows[0]);
+        }
+    });
+});
 /*
 https://nodejsappapi.herokuapp.com/login
 {
