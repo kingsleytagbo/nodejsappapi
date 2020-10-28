@@ -39,7 +39,8 @@ app
         });
     });
 
-app.get('/login', loginUser);
+app.get('/login', USERS.loginUser);
+
 app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
 /*
 https://nodejsappapi.herokuapp.com/login
