@@ -33,8 +33,8 @@ app
                 response.send(err);
             }
             else {
-                console.log({success: result.rows[1]});
-                response.send(result.rows[1]);
+                console.log({success: result.rows[0]});
+                response.send(result.rows[0]);
             }
         });
     });
