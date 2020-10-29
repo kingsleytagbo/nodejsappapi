@@ -83,7 +83,7 @@ const createUser = (request, response, next) => {
                         }
                         console.log({ createUserSuccess: newUser.rows[0] });
                         if (newUser && newUser.rows && newUser.rows[0].id) {
-                            response.status(200).send({id: newUser.rows[0].id});
+                            response.status(200).send({ id: newUser.rows[0].id });
                         }
                         else {
                             response.status(500).send({});
@@ -128,29 +128,30 @@ const updateUser = (request, response, next) => {
                 user_url = user.user_url,
                 user_activation_key = user.user_activation_key,
                 spam = user.spam,
-                deleted = user.deleted, 
+                deleted = user.deleted,
                 site_id = user.site_id,
                 id = user.id;
 
-                const params = {};
-                const keys = Object.keys(user);
-                for (let i=0; i<keys.length; i++) {
-                    params[keys[i]] =  user[keys[i]];
-                }
-                console.log({user: user, user_login: user.user_login, params: params});
+            const params = {};
+            const keys = Object.keys(user);
+            for (let i = 0; i < keys.length; i++) {
+                params[keys[i]] = user[keys[i]];
+            }
 
             POOLS.pool.query('UPDATE wp_user SET user_login=$1, user_pass=$2, user_nicename=$3, user_email=$4, display_name=$5, user_status=$6, user_registered=$7, user_url=$8, user_activation_key=$9,spam=$10, deleted=$11, site_id=$12 WHERE id=$13 RETURNING id',
                 [user_login, user_pass, user_nicename, user_email, display_name,
                     user_status, user_registered, user_url, user_activation_key, spam,
-                    deleted, site_id,  id], (error, newUser) => {
+                    deleted, site_id, id], (error, newUser) => {
                         if (error) {
                             throw error
                         }
-                        console.log({ updateUserSuccess: 
-                            params,
-                        user: user });
+                        console.log({
+                            updateUserSuccess:
+                                params,
+                            user: user
+                        });
                         if (newUser && newUser.rows) {
-                            response.status(200).send(params);
+                            response.status(200).send({ id: true });
                         }
                         else {
                             response.status(500).send({});
