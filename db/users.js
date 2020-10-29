@@ -80,7 +80,7 @@ const createUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        console.log({ createUserSuccess: newUser.insertId });
+                        console.log({ createUserSuccess: newUser });
                         response.status(200).send(`createUserSuccess: ${newUser.insertId}`)
                     });
 
