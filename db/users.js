@@ -141,7 +141,7 @@ const updateUser = (request, response, next) => {
                         }
                         console.log({ updateUserSuccess: newUser.rows });
                         if (newUser && newUser.rows) {
-                            response.status(200).send({id: true});
+                            response.status(200).send({id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login});
                         }
                         else {
                             response.status(500).send({});
