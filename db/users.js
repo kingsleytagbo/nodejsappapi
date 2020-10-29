@@ -139,9 +139,10 @@ const updateUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
+                        const data = [...user];
                         console.log({ updateUserSuccess: 
                             {id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login},
-                        user: user });
+                        user: user, data: data });
                         if (newUser && newUser.rows) {
                             response.status(200).send({id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login});
                         }
