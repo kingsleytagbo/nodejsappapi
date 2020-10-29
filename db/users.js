@@ -81,7 +81,12 @@ const createUser = (request, response, next) => {
                             throw error
                         }
                         console.log({ createUserSuccess: newUser.rows[0] });
-                        response.status(200).send(`createUserSuccess: ${newUser.rows[0].insertId}`)
+                        if (newUser && newUser.rows && (newUser.rows === 1)) {
+                            response.status(200).send(`id: ${newUser.rows[0].id}`);
+                        }
+                        else {
+                            response.status(500).send({});
+                        }
                     });
 
         });
