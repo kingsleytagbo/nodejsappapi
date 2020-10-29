@@ -25,6 +25,7 @@ app
 app.post('/login', USERS.loginUser);
 app.post('/users/getUsers', USERS.getUsers);
 app.post('/users/createUser', USERS.createUser);
+app.post('/users/updateUser', USERS.updateUser);
 
 app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
 
