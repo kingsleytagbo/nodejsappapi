@@ -23,6 +23,7 @@ app
     .get('/', (request, response) => response.send('Running NodeJS + Express Api'));
 
 app.post('/login', USERS.loginUser);
+app.post('/users/getUsers', USERS.getUsers);
 app.post('/users/createUser', USERS.createUser);
 
 app.listen(port, () => console.log(`Running NodeJS + Express Api on ${ port }`));
