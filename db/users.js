@@ -141,10 +141,10 @@ const updateUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        const data = [];
+                        const data = {};
                         const keys = Object.keys(user);
                         for (let i=0; i<keys.length; i++) {
-                            data.push([keys[i], user[keys[i]]]);
+                            data[keys[i], user[keys[i]]];
                         }
                         console.log({ updateUserSuccess: 
                             {id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login},
