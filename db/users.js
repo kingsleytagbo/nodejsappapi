@@ -59,17 +59,17 @@ const createUser = (request, response, next) => {
             const result = (data && data.rows && data.rows.length > 0) ?
                 { authenticated: true, auth_token: (new Date()).toISOString() } :
                 { authenticated: false, auth_token: null };
-            user.spam = result.authenticated ? 0 : 1;
-            const 
-                user_login = user.user_login, 
-                user_pass= user.user_pass, 
-                user_nicename=user.user_nicename, 
-                user_email = user.user_email, 
+            user.user_status = result.authenticated ? 0 : 1;
+            const
+                user_login = user.user_login,
+                user_pass = user.user_pass,
+                user_nicename = user.user_nicename,
+                user_email = user.user_email,
                 display_name = user.display_name,
-                user_status = user.user_status, 
-                user_registered = user.user_registered, 
-                user_url = user.user_url, 
-                user_activation_key = user.user_activation_key, 
+                user_status = user.user_status,
+                user_registered = user.user_registered,
+                user_url = user.user_url,
+                user_activation_key = user.user_activation_key,
                 spam = user.spam,
                 deleted = user.deleted, site_id = user.site_id;
 
@@ -80,8 +80,8 @@ const createUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        console.log({createUserSuccess: newUser.insertId});
-                        response.status(201).send(`createUserSuccess: ${newUser.insertId}`)
+                        console.log({ createUserSuccess: newUser.insertId });
+                        response.status(200).send(`createUserSuccess: ${newUser.insertId}`)
                     });
 
         });
