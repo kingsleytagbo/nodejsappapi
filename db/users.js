@@ -132,7 +132,12 @@ const updateUser = (request, response, next) => {
                 site_id = user.site_id,
                 id = user.id;
 
-                console.log({user: user, user_login: user.user_login});
+                const params = {};
+                const keys = Object.keys(user);
+                for (let i=0; i<keys.length; i++) {
+                    params[keys[i], user[keys[i]]];
+                }
+                console.log({user: user, user_login: user.user_login, params: params});
 
             POOLS.pool.query('UPDATE wp_user SET user_login=$1, user_pass=$2, user_nicename=$3, user_email=$4, display_name=$5, user_status=$6, user_registered=$7, user_url=$8, user_activation_key=$9,spam=$10, deleted=$11, site_id=$12 WHERE id=$13 RETURNING id',
                 [user_login, user_pass, user_nicename, user_email, display_name,
@@ -141,14 +146,9 @@ const updateUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        const data = {};
-                        const keys = Object.keys(user);
-                        for (let i=0; i<keys.length; i++) {
-                            data[keys[i], user[keys[i]]];
-                        }
                         console.log({ updateUserSuccess: 
-                            {id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login},
-                        user: user, data: data, keys: keys });
+                            params,
+                        user: user });
                         if (newUser && newUser.rows) {
                             response.status(200).send({id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login});
                         }
