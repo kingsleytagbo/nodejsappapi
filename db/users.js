@@ -139,10 +139,14 @@ const updateUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        const data = [...user];
+                        const data = [];
+                        const keys = Object.keys(user);
+                        for (let i=0; i<keys.length; i++) {
+                            data.push([keys[i], o[keys[i]]]);
+                        }
                         console.log({ updateUserSuccess: 
                             {id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login},
-                        user: user, data: data });
+                        user: user, data: data, keys: keys });
                         if (newUser && newUser.rows) {
                             response.status(200).send({id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login});
                         }
