@@ -104,7 +104,7 @@ const updateUser = (request, response, next) => {
     response.setHeader('Content-Type', 'application/json');
     try {
         const login = (request && request.body) ? JSON.parse(request.body).login : {};
-        const user = (request && request.body) ? JSON.parse(request.body).user : {};
+        const user = (request && request.body) ? JSON.parse(request.body).user.user : {};
         const username = ((login && login.username) || '').trim().toLowerCase();
         const password = ((login && login.password) || '');
         const guest = { user_login: username, user_pass: password };
@@ -144,7 +144,7 @@ const updateUser = (request, response, next) => {
                         const data = [];
                         const keys = Object.keys(user);
                         for (let i=0; i<keys.length; i++) {
-                            data.push([keys[i], o[keys[i]]]);
+                            data.push([keys[i], user[keys[i]]]);
                         }
                         console.log({ updateUserSuccess: 
                             {id: id, user_pass:user_pass, user_email:user_email, user_nicename: user_nicename, user_login:user_login},
