@@ -73,7 +73,7 @@ const createUser = (request, response, next) => {
                 spam = user.spam,
                 deleted = user.deleted, site_id = user.site_id;
 
-            POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning ID',
+            POOLS.pool.query('INSERT INTO wp_user (user_login, user_pass, user_nicename,user_email,display_name,user_status,user_registered,user_url,user_activation_key,spam, deleted,site_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id',
                 [user_login, user_pass, user_nicename, user_email, display_name,
                     user_status, user_registered, user_url, user_activation_key, spam,
                     deleted, site_id], (error, newUser) => {
