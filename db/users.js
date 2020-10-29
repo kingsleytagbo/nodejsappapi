@@ -139,9 +139,9 @@ const updateUser = (request, response, next) => {
                         if (error) {
                             throw error
                         }
-                        console.log({ updateUserSuccess: newUser.rows[0] });
-                        if (newUser && newUser.rows && newUser.rows[0].id) {
-                            response.status(200).send({id: newUser.rows[0].id});
+                        console.log({ updateUserSuccess: newUser.rows });
+                        if (newUser && newUser.rows) {
+                            response.status(200).send({id: true});
                         }
                         else {
                             response.status(500).send({});
