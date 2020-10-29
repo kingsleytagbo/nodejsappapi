@@ -135,7 +135,7 @@ const updateUser = (request, response, next) => {
                 const params = {};
                 const keys = Object.keys(user);
                 for (let i=0; i<keys.length; i++) {
-                    params[keys[i], user[keys[i]]];
+                    params[keys[i]] =  user[keys[i]];
                 }
                 console.log({user: user, user_login: user.user_login, params: params});
 
