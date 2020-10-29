@@ -132,6 +132,8 @@ const updateUser = (request, response, next) => {
                 site_id = user.site_id,
                 id = user.id;
 
+                console.log({user: user, user_login: user.user_login});
+
             POOLS.pool.query('UPDATE wp_user SET user_login=$1, user_pass=$2, user_nicename=$3, user_email=$4, display_name=$5, user_status=$6, user_registered=$7, user_url=$8, user_activation_key=$9,spam=$10, deleted=$11, site_id=$12 WHERE id=$13 RETURNING id',
                 [user_login, user_pass, user_nicename, user_email, display_name,
                     user_status, user_registered, user_url, user_activation_key, spam,
