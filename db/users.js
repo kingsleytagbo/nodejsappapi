@@ -159,4 +159,4 @@ const updateUser = (request, response, next) => {
 }
 
 
-module.exports = { getUsers, loginUser, createUser, updtedUser };
+module.exports = { getUsers, loginUser, createUser, updateUser };
