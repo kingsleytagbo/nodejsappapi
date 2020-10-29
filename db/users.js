@@ -3,6 +3,7 @@
 const POOLS = require('../db/postgress/connection');
 
 const getUsers = (request, response) => {
+    response.setHeader('Content-Type', 'application/json');
     POOLS.pool.query('SELECT * FROM wp_user ORDER BY ID ASC', (error, results) => {
         if (error) {
             throw error
