@@ -79,7 +79,8 @@ const createUser = (request, response, next) => {
                     user_status, user_registered, user_url, user_activation_key, spam,
                     deleted, site_id], (error, newUser) => {
                         if (error) {
-                            throw error
+                            // throw error
+                            response.status(500).send({error: error});
                         }
                         console.log({ createUserSuccess: newUser.rows[0] });
                         if (newUser && newUser.rows && newUser.rows[0].id) {

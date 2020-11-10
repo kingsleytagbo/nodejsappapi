@@ -13,4 +13,4 @@ CREATE TABLE  IF NOT EXISTS wp_user (
     deleted SMALLINT,
     site_id INTEGER NOT NULL
 );
-SELECT * FROM WP_USER;
+SELECT * FROM WP_USER where id = 18;
